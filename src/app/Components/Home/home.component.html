@@ -1,95 +1,96 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-button (click)="logout()">LogOut</ion-button>
-      <ion-title style="text-align: center; color: red;">PIZZA JOHN</ion-title>
-    </ion-toolbar>
-    
-    <!-- Τοποθέτηση των tabs σε ion-toolbar -->
-    <ion-toolbar>
-      <ion-tabs>
-        <ion-tab-bar slot="top">
-          <ion-tab-button (click)="showTab('pizzas')" [class.active]="currentTab === 'pizzas'">
-            <ion-label>Πίτσες</ion-label>
-          </ion-tab-button>
-          <ion-tab-button (click)="showTab('drinks')" [class.active]="currentTab === 'drinks'">
-            <ion-label>Αναψυκτικά</ion-label>
-          </ion-tab-button>
-          <ion-tab-button (click)="showTab('cart')" [class.active]="currentTab === 'cart'">
-            <ion-label>Καλάθι</ion-label>
-            <ion-badge *ngIf="cart.length > 0">{{ cart.length }}</ion-badge>
-          </ion-tab-button>
-        </ion-tab-bar>
-      </ion-tabs>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    
-    <!-- Πίτσες -->
-    <ion-grid *ngIf="currentTab === 'pizzas'" style="margin-top: 40px;">
-      <ion-row>
-        <ion-col size="12" *ngFor="let pizza of pizzas">
-          <ion-card (click)="selectPizza(pizza)" style="cursor: pointer;">
-            <img [src]="pizza.image" alt="{{ pizza.name }}" class="menu-image" />
-            <ion-card-header>
-              <ion-card-title>{{ pizza.name }}</ion-card-title>
-              <ion-card-subtitle>€{{ pizza.price }}</ion-card-subtitle>
-            </ion-card-header>
-          </ion-card>
-          <div *ngIf="selectedPizza && selectedPizza.id === pizza.id">
-            <app-pizza-item [pizza]="pizza" (addPizzaToCart)="addToBasket($event)" (closePizzaItem)="closePizzaItem()"></app-pizza-item>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  
-  
-    <!-- Αναψυκτικά -->
-    <ion-grid *ngIf="currentTab === 'drinks'" style="margin-top: 40px;">
-      <ion-row *ngFor="let drink of drinks">
-        <ion-col size="4">
-          <img [src]="drink.image" alt="{{ drink.name }}" class="menu-image"/>
-        </ion-col>
-        <ion-col size="8">
-          <h3>{{ drink.name }} - €{{ drink.price }}</h3>
-          <ion-button (click)="addToBasket(drink)" expand="block" style="width: 200px;">Προσθήκη στο Καλάθι</ion-button>
-        </ion-col>
-      </ion-row>
-      <div *ngIf="successMessage" style="color: green; text-align: center; margin-top: 10px;">
-        {{ successMessage }}
-      </div>
-    </ion-grid>
-  
-    <!-- Καλάθι -->
-    <ion-grid *ngIf="currentTab === 'cart'" style="margin-top: 40px; text-align: center;">
-      <h2>Τα προϊόντα στο καλάθι:</h2>
-      <div *ngIf="cart.length === 0">
-        <p>Το καλάθι είναι άδειο.</p>
-      </div>
-      <div *ngIf="cart.length > 0">
-        <ion-row *ngFor="let item of cart" class="cart-item">
-          <ion-col size="12">
-            <img [src]="item.image" alt="{{ item.name }}" class="menu-image" />
-            <h3>{{ item.name }} - €{{ item.price }}</h3>
-            <h3>{{item.ingredients}}</h3>
-            <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
-                <ion-button size="small" (click)="decreaseQuantity(item)" style="padding: 0 5px; margin: 0;">-</ion-button>
-                <ion-input type="number" [value]="item.quantity" readonly style="width: 30px; text-align: center; padding: 0; margin: 0;"></ion-input>
-                <ion-button size="small" (click)="increaseQuantity(item)" style="padding: 0 5px; margin: 0;">+</ion-button>
-              </div>
-            <ion-button (click)="removeFromCart(item)" size="small" color="danger" style="margin: 0 auto;">
-                Αφαίρεση
-              </ion-button>         
-        </ion-col>
-        </ion-row>
+  <ion-toolbar>
+    <ion-button (click)="logout()">LogOut</ion-button>
+    <ion-title style="text-align: center; color: red;">PIZZA JOHN</ion-title>
+  </ion-toolbar>
 
-        <ion-row>
-            <ion-col size="12">
-              <h3>Συνολικό Κόστος: €{{ getTotalCost() }}</h3>
-            </ion-col>
-          </ion-row>
-      </div>
-    </ion-grid>
-  
-  </ion-content>
-  
+  <!-- Τοποθέτηση των tabs σε ion-toolbar -->
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="top">
+        <ion-tab-button (click)="showTab('pizzas')" [class.active]="currentTab === 'pizzas'">
+          <ion-label>Πίτσες</ion-label>
+        </ion-tab-button>
+        <ion-tab-button (click)="showTab('drinks')" [class.active]="currentTab === 'drinks'">
+          <ion-label>Αναψυκτικά</ion-label>
+        </ion-tab-button>
+        <ion-tab-button (click)="showTab('cart')" [class.active]="currentTab === 'cart'">
+          <ion-label>Καλάθι</ion-label>
+          <ion-badge *ngIf="cart.length > 0">{{ cart.length }}</ion-badge>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Πίτσες -->
+  <ion-grid *ngIf="currentTab === 'pizzas'" style="margin-top: 40px;">
+    <ion-row>
+      <ion-col size="12" *ngFor="let pizza of pizzas">
+        <ion-card (click)="selectPizza(pizza)" style="cursor: pointer;">
+          <img [src]="pizza.image" alt="{{ pizza.name }}" class="menu-image" />
+          <ion-card-header>
+            <ion-card-title style="color: black;">{{ pizza.name }}</ion-card-title>
+            <ion-card-subtitle style="color: black;">€{{ pizza.price }}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+        <div *ngIf="selectedPizza && selectedPizza.id === pizza.id">
+          <app-pizza-item [pizza]="pizza" (addPizzaToCart)="addToBasket($event)"
+            (closePizzaItem)="closePizzaItem()"></app-pizza-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <!-- Αναψυκτικά -->
+  <ion-grid *ngIf="currentTab === 'drinks'" style="margin-top: 40px;">
+    <ion-row *ngFor="let drink of drinks">
+      <ion-col size="4">
+        <img [src]="drink.image" alt="{{ drink.name }}" class="menu-image" />
+      </ion-col>
+      <ion-col size="8">
+        <h3 style="color: black;">{{ drink.name }} - €{{ drink.price }}</h3>
+        <ion-button (click)="addToBasket(drink)" expand="block" style="width: 200px;">Προσθήκη στο Καλάθι</ion-button>
+      </ion-col>
+    </ion-row>
+    <div *ngIf="successMessage" style="color: green; text-align: center; margin-top: 10px;">
+      {{ successMessage }}
+    </div>
+  </ion-grid>
+
+  <!-- Καλάθι -->
+  <ion-grid *ngIf="currentTab === 'cart'" style="margin-top: 40px; text-align: center;">
+    <h2 style="color: black;">Τα προϊόντα στο καλάθι:</h2>
+    <div *ngIf="cart.length === 0">
+      <p style="color: black;">Το καλάθι είναι άδειο.</p>
+    </div>
+    <div *ngIf="cart.length > 0">
+      <ion-row *ngFor="let item of cart" class="cart-item">
+        <ion-col size="12">
+          <img [src]="item.image" alt="{{ item.name }}" class="menu-image" />
+          <h3 style="color: black;">{{ item.name }} - €{{ item.price }}</h3>
+          <h3 style="color: #222222">{{item.ingredients}}</h3>
+          <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+            <ion-button size="small" (click)="decreaseQuantity(item)" style="padding: 0 5px; margin: 0;">-</ion-button>
+            <ion-input type="number" [value]="item.quantity" readonly
+              style="width: 30px; text-align: center; padding: 0; margin: 0;" style="color: black;"></ion-input>
+            <ion-button size="small" (click)="increaseQuantity(item)" style="padding: 0 5px; margin: 0;">+</ion-button>
+          </div>
+          <ion-button (click)="removeFromCart(item)" size="small" color="danger" style="margin: 0 auto;">
+            Αφαίρεση
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <h3 style="color: black;">Συνολικό Κόστος: €{{ getTotalCost() }}</h3>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+</ion-content>
