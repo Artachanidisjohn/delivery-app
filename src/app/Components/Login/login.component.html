@@ -1,0 +1,92 @@
+
+
+<ion-header>
+    <ion-toolbar>
+        <ion-title style="text-align: center;color: red;">Welcome to John's PIZZA market</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <br><br><br> <br><br><br>
+    <div class="card-container">
+        <ion-card class="small-card">
+            <h1>Σύνδεση</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+<ion-grid>
+                <ion-label>Email</ion-label>
+                <br>
+                <input formControlName="email" type="text">
+                <div *ngIf="loginForm.get('email').invalid && submitted">
+                    <small style="color: red;">Παρακαλώ εισάγετε ένα έγκυρο email.</small>
+                  </div>
+                <br><br>
+                <ion-label>Κωδικός</ion-label>
+                <br>
+                <input formControlName="password" type="password">
+                <br><br>
+               
+                  <div *ngIf="!correctPassword && submitted">
+      <small style="color: red;">Λάθος κωδικός, παρακαλώ προσπαθήστε ξανά.</small>
+    </div>
+                <ion-button type="submit" expand="block">Είσοδος</ion-button>
+            </ion-grid>
+
+            </form>
+        </ion-card>
+
+        <ion-card class="small-card">
+            <h1>Δημιουργία Λογαριασμού</h1>
+            <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+                <ion-grid>
+              
+                  <ion-label>Name</ion-label>
+                  <br>
+                  <input formControlName="name" type="text">
+                  <br>
+                  <small *ngIf="registerForm.get('name')?.invalid && formInvalid" style="color: red;">
+                    Το πεδίο είναι υποχρεωτικό
+                  </small>
+                  <br>
+              
+                  <ion-label>Surname</ion-label>
+                  <br>
+                  <input formControlName="surname" type="text">
+                  <br>
+                  <small *ngIf="formInvalid && registerForm.get('surname')?.invalid" style="color: red;">
+                    Το πεδίο είναι υποχρεωτικό
+                  </small>
+                  <br>
+              
+                  <ion-label>Email</ion-label>
+                  <br>
+                  <input formControlName="email" type="email">
+                  <br>
+                  <small *ngIf="formInvalid && registerForm.get('email')?.invalid" style="color: red;">
+                    Παρακαλώ εισάγετε έγκυρο email
+                  </small>
+                  <br>
+              
+                  <ion-label>Κωδικός</ion-label>
+                  <br>
+                  <input formControlName="password" type="password">
+                  <br>
+                  <small *ngIf="formInvalid && registerForm.get('password')?.invalid" style="color: red;">
+                    Το πεδίο είναι υποχρεωτικό
+                  </small>
+                  <br><br>
+              
+                  <div *ngIf="formInvalid" style="color: red;">
+                    <small>Παρακαλώ συμπληρώστε τα απαιτούμενα πεδία</small>
+                  </div>
+                  <small *ngIf="registerOk" style="color: green;">Εγγραφήκατε επιτυχώς</small>
+                  
+                  <ion-button type="submit" expand="block">Εγγραφή</ion-button>
+              
+                </ion-grid>
+              </form>
+              
+        </ion-card>
+    </div>
+</ion-content>
+

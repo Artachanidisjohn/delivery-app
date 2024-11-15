@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './Components/Login/login.component';
+import { ProfileComponent } from './Components/Profile/profile.component';
+import { HomeComponent } from './Components/Home/home.component';
+import { AuthGuard } from './auth.guard';
+import { PizzaItemComponent } from './Components/PizzaItem/pizza-item.component';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: '', component: LoginComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'pizzaItem', component: PizzaItemComponent, canActivate: [AuthGuard] }
+
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })
