@@ -7,10 +7,19 @@ import { AuthGuard } from './auth.guard';
 import { PizzaItemComponent } from './Components/PizzaItem/pizza-item.component';
 
 const routes: Routes = [
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  {
+    path: 'profile', component: ProfileComponent,
+    // canActivate: [AuthGuard]
+  },
   { path: '', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'pizzaItem', component: PizzaItemComponent, canActivate: [AuthGuard] }
+  {
+    path: 'home', component: HomeComponent,
+    // canActivate: [AuthGuard] 
+  },
+  {
+    path: 'pizzaItem', component: PizzaItemComponent,
+    // canActivate: [AuthGuard] 
+  }
 
 ];
 

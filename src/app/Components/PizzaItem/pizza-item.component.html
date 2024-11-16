@@ -1,22 +1,24 @@
-<ion-card>
+<ion-card style="background-color: #f4f4f4; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
   <ion-card-content>
-    <p style="color: #333333;">{{ pizza.description }}</p>
+    <p style="color: #222; font-size: 14px; margin-bottom: 10px;">{{ pizza.description }}</p>
 
     <!-- Λίστα με τα υλικά της πίτσας -->
-    <ion-list>
-      <ion-item *ngFor="let ingredient of pizza.ingredients">
-        <ion-label style="color: black;">{{ ingredient }}</ion-label>
+    <ion-list style="background-color: #ffffff; border-radius: 5px; padding: 10px;">
+      <ion-item *ngFor="let ingredient of pizza.ingredients" style="--background: transparent;">
+        <ion-label style="color: #333; font-size: 13px;">{{ ingredient }}</ion-label>
         <!-- Ορίζουμε το checkbox ως checked αν το υλικό είναι επιλεγμένο -->
         <ion-checkbox slot="start" [checked]="selectedIngredients.includes(ingredient)"
-          (ionChange)="toggleIngredient(ingredient)"></ion-checkbox>
+          (ionChange)="toggleIngredient(ingredient)" style="--ion-color-primary: #4caf50;"></ion-checkbox>
       </ion-item>
     </ion-list>
 
-    <div *ngIf="showSuccessMessage" style="color: green; text-align: center; margin-top: 10px;">
+    <div *ngIf="showSuccessMessage" style="color: #4caf50; text-align: center; margin-top: 10px;">
       Προστέθηκε επιτυχώς στο καλάθι
     </div>
 
     <!-- Κουμπί για προσθήκη στο καλάθι -->
-    <ion-button expand="block" (click)="addToCart()">Προσθήκη στο Καλάθι</ion-button>
+    <ion-button expand="block" (click)="addToCart()" style="--background: #ff6f00; --color: #ffffff; margin-top: 15px;">
+      Προσθήκη στο Καλάθι
+    </ion-button>
   </ion-card-content>
 </ion-card>

@@ -1,46 +1,57 @@
+.menu-image {
+  width: 77px;
+  /* Καθορισμός πλάτους εικόνας */
+  height: 100px;
+  /* Καθορισμός ύψους εικόνας */
+  object-fit: cover;
+  /* Προσαρμογή εικόνας στο καθορισμένο πλαίσιο χωρίς παραμόρφωση */
+  border-radius: 10px;
+  /* Στρογγυλεμένες γωνίες */
+  margin-right: 10px;
+  margin-bottom: 40px;
+}
 
-  // .menu-image {
-  //   width: 100px;
-  //   height: 100px;
-  //   object-fit: cover;
-  //   border-radius: 10px;
-  //   margin-right: 10px;
-  //   margin-bottom: 40px;
-  // }
-  
-  // h3 {
-  //   margin: 0;
-  //   font-size: 18px;
-  // }
-
-  // ion-tab-button.active {
-  //   color: blue;  /* Το χρώμα για το ενεργό tab */
-  // }
-
- 
-
-  
-  .menu-image {
-    width: 77px;  /* Καθορισμός πλάτους εικόνας */
-    height: 100px; /* Καθορισμός ύψους εικόνας */
-    object-fit: cover;  /* Προσαρμογή εικόνας στο καθορισμένο πλαίσιο χωρίς παραμόρφωση */
-    border-radius: 10px;  /* Στρογγυλεμένες γωνίες */
-    margin-right: 10px;
-    margin-bottom: 40px;
-  }
-  
-  h3 {
-    margin: 0;
-    font-size: 18px;  /* Μέγεθος κειμένου για το όνομα της πίτσας */
-  }
-  
-  ion-tab-button.active {
-    color: blue;  /* Το χρώμα για το ενεργό tab */
-  }
-
-  
+h3 {
+  margin: 0;
+  font-size: 18px;
+  /* Μέγεθος κειμένου για το όνομα της πίτσας */
+}
 
 
 
+ion-button {
+  --background: #ff6f00;
+  /* Πορτοκαλί χρώμα */
+  --color: white;
+  /* Λευκό κείμενο */
+  border-radius: 5px;
+  /* Στρογγυλεμένες γωνίες */
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
 
-  
+ion-tab-button {
+  --color-selected: #ff6f00;
+  /* Χρώμα για το ενεργό tab */
+}
+
+ion-tab-button:hover {
+  color: #ff6f00 !important;
+  /* Πορτοκαλί χρώμα στο hover με παράκαμψη */
+  transition: color 0.3s ease;
+}
+
+ion-tab-button.active {
+  color: #ff6f00 !important;
+  /* Πορτοκαλί για το ενεργό tab */
+  font-weight: bold;
+  border-bottom: 2px solid #ff6f00;
+}
+
+
+ion-button[size="small"] {
+  font-size: 14px;
+  /* Μικρότερα κουμπιά */
+  padding: 5px 10px;
+
+}

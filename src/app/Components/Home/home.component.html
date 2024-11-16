@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-button (click)="logout()">LogOut</ion-button>
-    <ion-title style="text-align: center; color: red;">PIZZA JOHN</ion-title>
+    <ion-title style="text-align: center; color: #ff6f00;">PIZZA JOHN</ion-title>
   </ion-toolbar>
 
   <!-- Τοποθέτηση των tabs σε ion-toolbar -->
@@ -29,20 +29,27 @@
   <ion-grid *ngIf="currentTab === 'pizzas'" style="margin-top: 40px;">
     <ion-row>
       <ion-col size="12" *ngFor="let pizza of pizzas">
-        <ion-card (click)="selectPizza(pizza)" style="cursor: pointer;">
+        <ion-card (click)="selectPizza(pizza)" style="cursor: pointer; background-color: rgb(234, 239, 243);">
           <img [src]="pizza.image" alt="{{ pizza.name }}" class="menu-image" />
           <ion-card-header>
-            <ion-card-title style="color: black;">{{ pizza.name }}</ion-card-title>
-            <ion-card-subtitle style="color: black;">€{{ pizza.price }}</ion-card-subtitle>
+            <!-- Λιγότερο έντονο όνομα -->
+            <ion-card-title style="color: black; font-weight: 500; font-size: 16px;">
+              {{ pizza.name }}
+            </ion-card-title>
+            <!-- Μεγαλύτερη τιμή -->
+            <ion-card-subtitle style="color: black; font-size: 18px; font-weight: bold;">
+              €{{ pizza.price }}
+            </ion-card-subtitle>
           </ion-card-header>
         </ion-card>
         <div *ngIf="selectedPizza && selectedPizza.id === pizza.id">
-          <app-pizza-item [pizza]="pizza" (addPizzaToCart)="addToBasket($event)"
-            (closePizzaItem)="closePizzaItem()"></app-pizza-item>
+          <app-pizza-item [pizza]="pizza" (addPizzaToCart)="addToBasket($event)" (closePizzaItem)="closePizzaItem()">
+          </app-pizza-item>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
+
 
 
   <!-- Αναψυκτικά -->
