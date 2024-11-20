@@ -64,13 +64,6 @@ export class HomeComponent {
   ) { }
 
 
-
-
-
-
-
-
-
   showTab(tabName: string) {
     this.currentTab = tabName;  // Αλλάζουμε το tab ανάλογα με το κλικ
   }
@@ -78,11 +71,12 @@ export class HomeComponent {
 
   logout() {
     this.router.navigate(['/']);
-    // const userId=this.userService.getUser();
-    // this.http.post(`${this.apiUrl}/logout`,{userId}).subscribe(()=>{
-    //     this.router.navigate(['/']);
-    //     this.userService.clearUserData();})
-    //     console.log(userId,'userId');
+    const userId = this.userService.getUser();
+    this.http.post(`${this.apiUrl}/logout`, { userId }).subscribe(() => {
+      this.router.navigate(['/']);
+      this.userService.clearUserData();
+    })
+    console.log(userId, 'userId');
   }
 
   addToBasket(item: any) {

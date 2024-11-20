@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
     registerForm: FormGroup;
-    apiUrl = 'http://localhost:3100';
+    // apiUrl = 'http://localhost:3100';
+    apiUrl = "delivery-app-api-production-731d.up.railway.app"
     correctPassword: boolean = true;
     registerOk = false;
     submitted: boolean = false;
@@ -64,32 +65,28 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
 
+        this.submitted = true;
 
-        this.router.navigate(['/home']);
+        if (this.loginForm.valid) {
+            const user = this.loginForm.value;
 
+            console.log(this.loginForm);
 
-        // this.submitted=true;
+            this.http.post(`${this.apiUrl}/login`, user).subscribe(
+                (response: any) => {
 
-        // if (this.loginForm.valid) {
-        //   const user = this.loginForm.value;
-
-        // console.log(this.loginForm);
-
-        //   this.http.post(`${this.apiUrl}/login`, user).subscribe(
-        //     (response: any) => {
-
-        //         const userId = response.userId.user.id; // Παίρνουμε το userId από το αντικείμενο user
-        //         this.userService.setUserId(userId);
-        //         console.log('user id',userId);
-        //         this.correctPassword=true;
-        //         this.router.navigate(['/home']);
-        //     },
-        //     (error) => {
-        //         this.correctPassword=false;
-        //       console.error('Login failed', error);
-        //     }
-        //   );
-        // }
+                    const userId = response.userId.user.id; // Παίρνουμε το userId από το αντικείμενο user
+                    this.userService.setUserId(userId);
+                    console.log('user id', userId);
+                    this.correctPassword = true;
+                    this.router.navigate(['/home']);
+                },
+                (error) => {
+                    this.correctPassword = false;
+                    console.error('Login failed', error);
+                }
+            );
+        }
     }
 
 
