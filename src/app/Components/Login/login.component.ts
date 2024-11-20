@@ -15,7 +15,9 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     registerForm: FormGroup;
     // apiUrl = 'http://localhost:3100';
-    apiUrl = "delivery-app-api-production-731d.up.railway.app"
+    apiUrl = "https://delivery-app-api-production-731d.up.railway.app/api";
+
+
     correctPassword: boolean = true;
     registerOk = false;
     submitted: boolean = false;
