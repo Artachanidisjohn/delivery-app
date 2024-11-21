@@ -9,16 +9,16 @@ import { PizzaItemComponent } from './Components/PizzaItem/pizza-item.component'
 const routes: Routes = [
   {
     path: 'profile', component: ProfileComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   { path: '', component: LoginComponent },
   {
     path: 'home', component: HomeComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'pizzaItem', component: PizzaItemComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   }
 
 ];
