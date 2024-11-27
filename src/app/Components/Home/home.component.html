@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-button (click)="logout()">LogOut</ion-button>
-    <ion-title style="text-align: center; color: #ff6f00;">PIZZA JOHN</ion-title>
+    <ion-title style="text-align: center; color: #ff6f00;">The Pizza Spot</ion-title>
   </ion-toolbar>
 
   <!-- Τοποθέτηση των tabs σε ion-toolbar -->
@@ -60,7 +60,7 @@
       </ion-col>
       <ion-col size="8">
         <h3 style="color: black;">{{ drink.name }} - €{{ drink.price }}</h3>
-        <ion-button (click)="addToBasket(drink)" expand="block" style="width: 200px;">Προσθήκη στο Καλάθι</ion-button>
+        <ion-button (click)="addToBasket(drink)" expand="block" style="width: 200px;">Προσθηκη στο Καλαθι</ion-button>
       </ion-col>
     </ion-row>
     <div *ngIf="successMessage" style="color: green; text-align: center; margin-top: 10px;">
@@ -87,7 +87,7 @@
             <ion-button size="small" (click)="increaseQuantity(item)" style="padding: 0 5px; margin: 0;">+</ion-button>
           </div>
           <ion-button (click)="removeFromCart(item)" size="small" color="danger" style="margin: 0 auto;">
-            Αφαίρεση
+            Αφαιρεση
           </ion-button>
         </ion-col>
       </ion-row>

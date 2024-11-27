@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title style="text-align: center; color: #ff6f00;">Welcome to John's pizza</ion-title>
+    <ion-title style="text-align: center; color: #ff6f00;">Welcome to Pizza App</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +20,7 @@
         <div *ngIf="!correctPassword && submitted">
           <small style="color: red;">Λάθος κωδικός, παρακαλώ προσπαθήστε ξανά.</small>
         </div>
-        <ion-button type="submit" expand="block">Είσοδος</ion-button>
+        <ion-button type="submit" expand="block">Εισοδος</ion-button>
       </form>
     </ion-card>
 
@@ -45,9 +45,15 @@
         <!-- Email -->
         <ion-label>Email</ion-label>
         <input formControlName="email" type="email">
-        <div *ngIf="formInvalid && registerForm.get('email')?.invalid" class="error-message">
-          Παρακαλώ εισάγετε έγκυρο email
+        <div *ngIf="formInvalid && registerForm.get('email')?.errors" class="error-message">
+          <div *ngIf="registerForm.get('email')?.errors['required']">
+            Το πεδίο είναι υποχρεωτικό.
+          </div>
+          <div *ngIf="registerForm.get('email')?.errors['email'] && !registerForm.get('email')?.errors['required']">
+            Παρακαλώ εισάγετε έγκυρο email.
+          </div>
         </div>
+
 
         <!-- Κωδικός -->
         <ion-label>Κωδικός</ion-label>
@@ -57,7 +63,7 @@
         </div>
 
         <!-- Κουμπί Υποβολής -->
-        <ion-button type="submit" expand="block">Εγγραφή</ion-button>
+        <ion-button type="submit" expand="block">Εγγραφη</ion-button>
       </form>
     </ion-card>
 
