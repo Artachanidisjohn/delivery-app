@@ -19,7 +19,7 @@ export class HomeComponent {
 
   selectedPizza: any = null;  // Η επιλεγμένη πίτσα
   successMessage: string = '';  // Μήνυμα επιτυχίας
-
+  searchTerm: string = '';
 
 
 
@@ -130,6 +130,16 @@ export class HomeComponent {
     if (item.quantity > 1) {
       item.quantity -= 1;
     }
+  }
+
+
+  get filteredPizzas() {
+    if (!this.searchTerm.trim()) {
+      return this.pizzas; // Αν δεν υπάρχει όρος αναζήτησης, επιστρέφουμε όλες τις πίτσες
+    }
+    return this.pizzas.filter(pizza =>
+      pizza.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
 }

@@ -25,10 +25,16 @@
 
 <ion-content>
 
+  <div *ngIf="currentTab === 'pizzas'" style="margin-top: 20px; text-align: center; color: #000;">
+    <ion-input placeholder="Αναζήτηση πίτσας..." [(ngModel)]="searchTerm"
+      style="width: 50%; margin-bottom: 20px; border: 1px solid #141414; border-radius: 5px; padding: 5px;">
+    </ion-input>
+  </div>
+
   <!-- Πίτσες -->
   <ion-grid *ngIf="currentTab === 'pizzas'" style="margin-top: 40px;">
     <ion-row>
-      <ion-col size="12" *ngFor="let pizza of pizzas">
+      <ion-col size="12" *ngFor="let pizza of filteredPizzas">
         <ion-card (click)="selectPizza(pizza)" style="cursor: pointer; background-color: rgb(234, 239, 243);">
           <img [src]="pizza.image" alt="{{ pizza.name }}" class="menu-image" />
           <ion-card-header>
